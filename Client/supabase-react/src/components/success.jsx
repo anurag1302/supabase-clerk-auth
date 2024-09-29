@@ -9,13 +9,19 @@ const supabase = createClient(supabaseUrl, supabasePublicKey);
 const Success = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState("");
-  console.log("User data", user);
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     async function userData() {
       await supabase.auth.getUser().then((x) => {
         if (x.data?.user) {
           setUser(x.data?.user);
+          let item = localStorage.getItem("sb-tobqgdswgannjhgugrmf-auth-token");
+          let parsedItem = JSON.parse(item);
+          console.log("parsedItem", parsedItem);
+          let accessToken = parsedItem["access_token"];
+          console.log("accesstoken", accessToken);
+          setToken(accessToken);
         }
       });
     }
