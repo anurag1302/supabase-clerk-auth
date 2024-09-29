@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
@@ -9,18 +9,21 @@ const supabasePublicKey = import.meta.env.VITE_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabasePublicKey);
 
 const Login = () => {
+  const [event, setEvent] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     supabase.auth.onAuthStateChange(async (event) => {
       console.log(event);
       if (event === "SIGNED_IN") {
+        setEvent(event);
         navigate("/success");
       } else {
+        setEvent(event);
         navigate("/login");
       }
     });
-  }, []);
+  }, [event]);
 
   return (
     <>
