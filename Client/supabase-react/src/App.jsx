@@ -39,6 +39,6 @@ export default function App() {
       </div>
     );
   } else {
-    return <div>Logged in!</div>;
+    return <div className="success">Logged in!</div>;
   }
 }
