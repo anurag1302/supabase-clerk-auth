@@ -6,6 +6,7 @@ import {
   UserButton,
 } from "@clerk/clerk-react";
 
+import Success from "./components/success";
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
         </SignedOut>
         <SignedIn>
           <UserButton />
+          <Success />
         </SignedIn>
       </header>
     </>
